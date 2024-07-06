@@ -1,6 +1,11 @@
 from ParaImagenes import frames_imagenes
 import tkinter as tk
 
+#para el segundo boton que destruya la ventana actual y abra la "secundaria" que seria el registro
+def llamar_2():
+    fm_i.abrir_archivo()
+    fm_i.cerrar_ventana()
+    
 #-- creamos la ventana y heredamos la clase frames_imagenes --#
 ventana=tk.Tk()
 fm_i=frames_imagenes(ventana,720,480)
@@ -54,12 +59,13 @@ label2.pack(pady=11,padx=15,anchor="w")
 entry2=tk.Entry(frame_SurEste,width=80,font=("Times",14),fg="#111",bd=1,relief=tk.SOLID,show="*")
 entry2.pack(pady=6,padx=15,anchor="w")#el anchor define el lugar del widget(dentro del frame obvio)
 
-#-- botton de iniciar sesion y su ubicacion --#
+#-- botton de iniciar sesion y su ubicacion en la ventana --#
 boton1=tk.Button(frame_SurEste,text="Iniciar sesion",font=("Helvetica",15,"bold"),bg="#0B4EBD",bd=0,fg="#fafafa",width=80,height=1)
 boton1.pack(padx=16,pady=28)
 
-#-- boton de registrar usuario y su ubicacion --#
-boton2=tk.Button(frame_SurEste,text="Registrar Usuario",font=("Times",14),bg="#fafafa",bd=0,fg="#0B4E90",width=80,height=1)
+
+#-- boton de registrar usuario y su ubicacion en la ventana--#
+boton2=tk.Button(frame_SurEste,text="Registrar Usuario",font=("Times",14),bg="#fafafa",bd=0,fg="#0B4E90",width=80,height=1,command=llamar_2)
 boton2.pack(padx=16,pady=0)
 
 #-- mainloop para que se muestre la ventana --#

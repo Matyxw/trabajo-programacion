@@ -18,6 +18,25 @@ def imagen(i):
     img=fm_i.leer_imagen(camino_imagen[i],(20,20))
     return img
 
+def obtener_valores(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7):
+    #se guardan los valores de los var_entry en en los valor_entry
+    valor_entry1 = var_entry1.get()
+    valor_entry2 = var_entry2.get()
+    valor_entry3 = var_entry3.get()
+    valor_entry4 = var_entry4.get()
+    valor_entry5 = var_entry5.get()
+    valor_entry6 = var_entry6.get()
+    valor_entry7 = var_entry7.get()
+    
+    #los print son para saber que se guardo
+    print(f"Valor del Entry 1: {valor_entry1}")
+    print(f"Valor del Entry 2: {valor_entry2}")
+    print(f"Valor del Entry 3: {valor_entry3}")
+    print(f"Valor del Entry 4: {valor_entry4}")
+    print(f"Valor del Entry 5: {valor_entry5}")
+    print(f"Valor del Entry 6: {valor_entry6}")
+    print(f"Valor del Entry 7: {valor_entry7}")
+        
 def main():
 
     #creamos el frame del titulo
@@ -39,6 +58,15 @@ def main():
     
     #aparte asi las posiciones no cambian casi nada y dsp con un poco mas de tiempo hacer una funcion en vez de 7 copiados y pegado diferenciados por un numero
 
+#(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7)
+    var_entry1=tk.StringVar()
+    var_entry2=tk.StringVar()
+    var_entry3=tk.StringVar()
+    var_entry4=tk.StringVar()
+    var_entry5=tk.StringVar()
+    var_entry6=tk.StringVar()
+    var_entry7=tk.StringVar()
+
     #-- primer frame --#
     new_frame=fm_i.crear_frame_auxiliar(frame_restante,50)
     img=imagen(0)
@@ -49,7 +77,7 @@ def main():
     label1=tk.Label(new_frame,text="Nombre:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label1.place(relx=0.06,rely=0.0)
 
-    entry1=tk.Entry(new_frame,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry1=tk.Entry(new_frame,textvariable=var_entry1,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry1.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del primer frame --#
     
@@ -63,7 +91,7 @@ def main():
     label2=tk.Label(new_frame2,text="Apellido:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label2.place(relx=0.06,rely=0.0)
     
-    entry2=tk.Entry(new_frame2,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry2=tk.Entry(new_frame2,textvariable=var_entry2,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry2.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del segundo frame --#
     
@@ -77,7 +105,7 @@ def main():
     label3=tk.Label(new_frame3,text="Usuario:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label3.place(relx=0.06,rely=0.0)
     
-    entry3=tk.Entry(new_frame3,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry3=tk.Entry(new_frame3,textvariable=var_entry3,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry3.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del tercer frame --#
     
@@ -91,7 +119,7 @@ def main():
     label4=tk.Label(new_frame4,text="Confirmar usuario:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label4.place(relx=0.057,rely=0.0)
     
-    entry4=tk.Entry(new_frame4,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry4=tk.Entry(new_frame4,textvariable=var_entry4,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry4.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del cuarto frame --#
     
@@ -105,7 +133,7 @@ def main():
     label5=tk.Label(new_frame5,text="Contraseña:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label5.place(relx=0.06,rely=0.0)
     
-    entry5=tk.Entry(new_frame5,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry5=tk.Entry(new_frame5,textvariable=var_entry5,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry5.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del quinto frame --#
     
@@ -119,7 +147,7 @@ def main():
     label6=tk.Label(new_frame6,text="Confirmar contraseña:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label6.place(relx=0.06,rely=0.0)
     
-    entry6=tk.Entry(new_frame6,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry6=tk.Entry(new_frame6,textvariable=var_entry6,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry6.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del sexto frame --#
     
@@ -133,14 +161,15 @@ def main():
     label7=tk.Label(new_frame7,text="Email:",font=("Times",12),fg="#666a88",bg="#f0f0f0")
     label7.place(relx=0.067,rely=0.0)
     
-    entry7=tk.Entry(new_frame7,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
+    entry7=tk.Entry(new_frame7,textvariable=var_entry7,font=("Times",11),fg="#222",bg="#fff",bd=1,relief=tk.SOLID)
     entry7.place(relx=0.02,rely=0.5,relwidth=0.95)
     #-- fin del sexto frame --#
     
+    #para que al llamarla sin parentesis se ejecute solo cuando se ejecute el boton
+    def obt_val():
+        return obtener_valores(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7)
     
-    
-    bt_guardar=tk.Button(frame_restante,text="Crear usuario",width=400,bg="#226EAD",fg="#f0f0f0",font=("Helvetica",14),bd=0)
+    bt_guardar=tk.Button(frame_restante,text="Crear usuario",width=400,bg="#226EAD",fg="#f0f0f0",font=("Helvetica",14),bd=0,command=obt_val)
     bt_guardar.pack(pady=25,padx=7)
-    
     ventana.mainloop()
 main()

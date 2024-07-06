@@ -1,5 +1,7 @@
 from PIL import ImageTk,Image
 import tkinter as tk
+import subprocess
+from tkinter import messagebox
 
 #creamos la clase para luego importarla entera 
 class frames_imagenes:
@@ -27,4 +29,25 @@ class frames_imagenes:
         frame_auxiliar.pack_propagate(False)
         return frame_auxiliar
     
+    def abrir_archivo(self):
+        ruta_archivo = "login_intento-legible.8/intento-registro4.py"
+        try:
+            subprocess.Popen(["python", ruta_archivo])
+        except FileNotFoundError as e:
+            messagebox.showerror("Error", f"No se pudo encontrar el archivo: {ruta_archivo}")
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al abrir el archivo: {e}")
+            
+    def cerrar_ventana(self):
+        self.ventana.destroy()
+    
     # def registro_ayuda(self,master,)
+    def obtener_valores(self):
+        
+        valor_entry1=self.var_entry1.get()
+        valor_entry2=self.var_entry2.get()
+        valor_entry3=self.var_entry3.get()
+        valor_entry4=self.var_entry4.get()
+        valor_entry5=self.var_entry5.get()
+        valor_entry6=self.var_entry6.get()
+        valor_entry7=self.var_entry7.get()
