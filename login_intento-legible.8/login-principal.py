@@ -5,7 +5,7 @@ import tkinter as tk
 ventana=tk.Tk()
 fm_i=frames_imagenes(ventana,720,480)
 fm_i.centrar_ventana()#fm_i es un nombre nada mas para llamar las cosas de la clase luego si quieren lo cambian a lo que quieran
-ventana.title("ventana, principal momentanea")
+ventana.title("Login")
 
 #-- creamos el frame del logo de la escuela que basicamente ocupa toda la parte izquierda --#
 frame_izq=tk.Frame(ventana,bg="#0B4EBD",width=280,height=480)

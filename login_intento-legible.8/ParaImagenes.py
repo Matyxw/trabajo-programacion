@@ -20,3 +20,11 @@ class frames_imagenes:
     #damos la ruta y el tamaño de la imagen para luego con un metodo como pack o place ubicarla
     def leer_imagen(self,ruta,tamaño):
         return ImageTk.PhotoImage(Image.open(ruta).resize(tamaño,Image.LANCZOS))
+
+    def crear_frame_auxiliar(self, master, altura):
+        frame_auxiliar = tk.Frame(master, bg="#f0f0f0", width=420, height=altura)
+        frame_auxiliar.pack(side=tk.TOP, fill="x")
+        frame_auxiliar.pack_propagate(False)
+        return frame_auxiliar
+    
+    # def registro_ayuda(self,master,)
