@@ -1,12 +1,24 @@
 import tkinter as tk
 from ParaImagenes import frames_imagenes
+from bd.config import conectar_bd,insert_data,verificar_usuario_existente
+from tkinter import messagebox
+
+def llamar_2():
+    fm_i.abrir_archivo_registro()
+    fm_i.cerrar_ventana()
+    
+    
+#conectamos a la base de datos
+cnx = conectar_bd()
+
 
 #creamos la ventana
 ventana=tk.Tk()
 fm_i=frames_imagenes(ventana,420,560)
 fm_i.centrar_ventana()
 ventana.title("Registro")
-#-- creamos la funcion que lo que hace es agarra de la lista y utiliza la funcion leer imagen y le asigna mos un tamaño de 20x20px --#
+ventana.resizable(width=False, height=False)#que no se pueda agrandar ni achicar la ventana
+#-- creamos la funcion que lo que hace es agarra de la lista y utiliza la funcion leer imagen y le asignamos un tamaño de 20x20px --#
 def imagen(i):
     camino_imagen=["login_intento-legible.8/imagenes/nombre.png",
                    "login_intento-legible.8/imagenes/apellido.png",
@@ -20,22 +32,26 @@ def imagen(i):
 
 def obtener_valores(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7):
     #se guardan los valores de los var_entry en en los valor_entry
-    valor_entry1 = var_entry1.get()
-    valor_entry2 = var_entry2.get()
-    valor_entry3 = var_entry3.get()
-    valor_entry4 = var_entry4.get()
-    valor_entry5 = var_entry5.get()
-    valor_entry6 = var_entry6.get()
-    valor_entry7 = var_entry7.get()
-    
-    #los print son para saber que se guardo
-    print(f"Valor del Entry 1: {valor_entry1}")
-    print(f"Valor del Entry 2: {valor_entry2}")
-    print(f"Valor del Entry 3: {valor_entry3}")
-    print(f"Valor del Entry 4: {valor_entry4}")
-    print(f"Valor del Entry 5: {valor_entry5}")
-    print(f"Valor del Entry 6: {valor_entry6}")
-    print(f"Valor del Entry 7: {valor_entry7}")
+    valor_entry1 = var_entry1.get()#nombre
+    valor_entry2 = var_entry2.get()#apellido
+    valor_entry3 = var_entry3.get()#usuario
+    valor_entry4 = var_entry4.get()#conf usuario
+    valor_entry5 = var_entry5.get()#contraseña
+    valor_entry6 = var_entry6.get()#conf contraseña
+    valor_entry7 = var_entry7.get()#email
+
+    if ((valor_entry3==valor_entry4 and valor_entry5==valor_entry6 and "@" in valor_entry7)and
+        (valor_entry1!="" and valor_entry2!="" and valor_entry3!="" and valor_entry5!="")):
+        if (verificar_usuario_existente(cnx,valor_entry3)):
+            messagebox.showerror("Error",f"el usuario'{valor_entry3}' ya existe")
+        else:
+            insert_data(cnx, valor_entry1, valor_entry2,valor_entry4,valor_entry5,valor_entry7)
+            messagebox.showinfo("Aviso","Los datos han sido guardados exitosamente")
+            llamar_2()
+            
+            
+    else:
+        messagebox.showerror("ERROR","los datos ingresados son invalidos, vuelva a intentarlo")
         
 def main():
 
@@ -58,7 +74,6 @@ def main():
     
     #aparte asi las posiciones no cambian casi nada y dsp con un poco mas de tiempo hacer una funcion en vez de 7 copiados y pegado diferenciados por un numero
 
-#(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7)
     var_entry1=tk.StringVar()
     var_entry2=tk.StringVar()
     var_entry3=tk.StringVar()
@@ -167,9 +182,12 @@ def main():
     
     #para que al llamarla sin parentesis se ejecute solo cuando se ejecute el boton
     def obt_val():
-        return obtener_valores(var_entry1,var_entry2,var_entry3,var_entry4,var_entry5,var_entry6,var_entry7)
+        obtener_valores(var_entry1, var_entry2, var_entry3, var_entry4, var_entry5, var_entry6, var_entry7)
     
     bt_guardar=tk.Button(frame_restante,text="Crear usuario",width=400,bg="#226EAD",fg="#f0f0f0",font=("Helvetica",14),bd=0,command=obt_val)
-    bt_guardar.pack(pady=25,padx=7)
+    bt_guardar.pack(pady=18,padx=7)
+    
+    bt_volver=tk.Button(frame_restante,text="Volver al login",width=100,bg="#f0f0f0",fg="#226EAD",font=("Helvetica",12,"bold"),bd=0,command=llamar_2)
+    bt_volver.pack(pady=0,padx=7)
     ventana.mainloop()
 main()

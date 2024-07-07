@@ -37,6 +37,14 @@ class frames_imagenes:
             messagebox.showerror("Error", f"No se pudo encontrar el archivo: {ruta_archivo}")
         except Exception as e:
             messagebox.showerror("Error", f"Error al abrir el archivo: {e}")
+    def abrir_archivo_registro(self):
+        ruta_archivo = "login_intento-legible.8/login-principal.py"
+        try:
+            subprocess.Popen(["python", ruta_archivo])
+        except FileNotFoundError as e:
+            messagebox.showerror("Error", f"No se pudo encontrar el archivo: {ruta_archivo}")
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al abrir el archivo: {e}")
             
     def cerrar_ventana(self):
         self.ventana.destroy()
